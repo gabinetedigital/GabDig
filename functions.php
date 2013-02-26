@@ -46,5 +46,32 @@ function twentyeleven_procergs_widgets_init() {
 }
 add_action( 'widgets_init', 'twentyeleven_procergs_widgets_init' );
 
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+	register_post_type( 'artigo-herarquico',
+		array(
+			'labels' => array(
+				'name' => __( 'Artigo Hierárquico' ),
+				'singular_name' => __( 'Artigo Hierárquico' ),
+				'add_new_item' => __('Adicionar novo Artigo Hierárquico'),
+				'edit_item' => __( 'Editar Artigo Hierárquico' ),
+				'add_new' => __( 'Novo Artigo Hierárquico' ),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'lei'),
+			'exclude_from_search' => true,
+			'show_in_menu' => true,
+			'hierarchical' => 'true',
+			'taxonomies' => array(
+				'category',
+				'post_tag'
+			),
+			'supports' => array(
+				'title','editor','author','page-attributes','comments','revisions',
+			),
+		)
+	);
+}
 
 ?>
