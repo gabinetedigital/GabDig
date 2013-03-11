@@ -93,8 +93,8 @@ $prefix = 'artigo_hierarquico_';
 $meta_boxes_artigo_hierarquico = array();
 
 $meta_boxes_artigo_hierarquico[] = array(
-		'id' => $prefix.'configuracao',
-		'title' => 'Configurações de Exibição',
+		'id' => $prefix.'configuracao-pai',
+		'title' => 'Configurações de Exibição de item Pai',
 		'pages' => array('artigo-herarquico'),
 		'context'=> 'normal',
 		'priority'=> 'high',
@@ -123,6 +123,22 @@ $meta_boxes_artigo_hierarquico[] = array(
 						'desc'		=> 'Habilita ou não o recolhimento das partes do  texto',
 						'type'		=> 'checkbox'
 				),		)
+);
+
+$meta_boxes_artigo_hierarquico[] = array(
+		'id' => $prefix.'configuracao-filho',
+		'title' => 'Configurações de Exibição de item Filho',
+		'pages' => array('artigo-herarquico'),
+		'context'=> 'normal',
+		'priority'=> 'high',
+		'fields' => array(
+				array(
+						'name'		=> 'Inibir comentários neste item',
+						'id'		=> $prefix . 'inibir_comentarios',
+						'desc'		=> 'Desabilitar comentários apenas neste item, mesmo que o comentário nos filhos esteja habilitado',
+						'type'		=> 'checkbox'
+				),
+				)
 );
 
 
