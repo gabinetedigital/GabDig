@@ -118,9 +118,15 @@ $meta_boxes_artigo_hierarquico[] = array(
 						'type'		=> 'checkbox'
 				),
 				array(
+						'name'		=> 'Abas',
+						'id'		=> $prefix . 'abas',
+						'desc'		=> 'Habilita ou não a visualização por Abas do artigo (não habilitar ao mesmo tempo com Sanfona)',
+						'type'		=> 'checkbox'
+				),
+				array(
 						'name'		=> 'Sanfona',
 						'id'		=> $prefix . 'sanfona',
-						'desc'		=> 'Habilita ou não o recolhimento das partes do  texto',
+						'desc'		=> 'Habilita ou não o recolhimento das partes do texto (não habilitar ao mesmo tempo com Abas)',
 						'type'		=> 'checkbox'
 				),		)
 );
