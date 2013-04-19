@@ -162,4 +162,404 @@ function wp_artigo_hierarquico_register_meta_boxes()
 }
 
 add_action('admin_init', 'wp_artigo_hierarquico_register_meta_boxes' );
+
+// ===========================================================
+// Página de configurações do GD
+// ===========================================================
+function gd_config_settings() {
+	$msg = "";
+	if (isset($_POST["update_settings"])) {
+	    $base_url = esc_attr($_POST["BASE_URL"]);
+    	update_option("gd_base_url", $base_url);
+
+	    $date_format = esc_attr($_POST["DATE_FORMAT"]);
+    	update_option("gd_date_format", $date_format);
+
+	    $pairwise_server = esc_attr($_POST["PAIRWISE_SERVER"]);
+    	update_option("gd_pairwise_server", $pairwise_server);
+
+	    $pairwise_username = esc_attr($_POST["PAIRWISE_USERNAME"]);
+    	update_option("gd_pairwise_username", $pairwise_username);
+
+    	$pairwise_password = esc_attr($_POST["PAIRWISE_PASSWORD"]);
+    	update_option("gd_pairwise_password", $pairwise_password);
+
+    	$twitter_consumer_key = esc_attr($_POST["TWITTER_CONSUMER_KEY"]);
+    	update_option("gd_twitter_consumer_key", $twitter_consumer_key);
+
+    	$twitter_consumer_secret = esc_attr($_POST["TWITTER_CONSUMER_SECRET"]);
+    	update_option("gd_twitter_consumer_secret", $twitter_consumer_secret);
+
+    	$facebook_app_id = esc_attr($_POST["FACEBOOK_APP_ID"]);
+    	update_option("gd_facebook_app_id", $facebook_app_id);
+
+    	$facebook_app_secret = esc_attr($_POST["FACEBOOK_APP_SECRET"]);
+    	update_option("gd_facebook_app_secret", $facebook_app_secret);
+
+    	$facebook_comment_moderators = esc_attr($_POST["FACEBOOK_COMMENT_MODERATORS"]);
+    	update_option("gd_facebook_comment_moderators", $facebook_comment_moderators);
+
+    	$facebook_comment_url = esc_attr($_POST["FACEBOOK_COMMENT_URL"]);
+    	update_option("gd_facebook_comment_url", $facebook_comment_url);
+
+    	$votacao_url = esc_attr($_POST["VOTACAO_URL"]);
+    	update_option("gd_votacao_url", $votacao_url);
+
+    	$votacao_root = esc_attr($_POST["VOTACAO_ROOT"]);
+    	update_option("gd_votacao_root", $votacao_root);
+
+    	$votacao_altura = esc_attr($_POST["VOTACAO_ALTURA"]);
+    	update_option("gd_votacao_altura", $votacao_altura);
+
+    	$twitter_stream_username = esc_attr($_POST["TWITTER_STREAM_USERNAME"]);
+    	update_option("gd_twitter_stream_username", $twitter_stream_username);
+
+    	$twitter_stream_password = esc_attr($_POST["TWITTER_STREAM_PASSWORD"]);
+    	update_option("gd_twitter_stram_password", $twitter_stream_password);
+
+    	$twitter_mayor_username = esc_attr($_POST["TWITTER_MAYOR_USERNAME"]);
+    	update_option("gd_twitter_mayor_username", $twitter_mayor_username);
+
+    	$twitter_hash_cabecalho = esc_attr($_POST["TWITTER_HASH_CABECALHO"]);
+    	update_option("gd_twitter_hash_cabecalho", $twitter_hash_cabecalho);
+
+    	$galerias_destacadas_id = esc_attr($_POST["GALERIAS_DESTACADAS_ID"]);
+    	update_option("gd_galerias_destacadas_id", $galerias_destacadas_id);
+
+    	$video_paginacao = esc_attr($_POST["VIDEO_PAGINACAO"]);
+    	update_option("gd_video_paginacao", $video_paginacao);
+
+    	$from_addr = esc_attr($_POST["FROM_ADDR"]);
+    	update_option("gd_from_addr", $from_addr);
+
+    	$smtp = esc_attr($_POST["SMTP"]);
+    	update_option("gd_smtp", $smtp);
+
+    	$msg = "<h2>Configurações atualizadas!</h2>";
+	}else{
+		# => Busca as configurações já gravadas
+		$base_url = get_option("gd_base_url");
+	    $date_format = get_option("gd_date_format");
+	    $pairwise_server = get_option("gd_pairwise_server");
+	    $pairwise_username = get_option("gd_pairwise_username");
+    	$pairwise_password = get_option("gd_pairwise_password");
+    	$twitter_consumer_key = get_option("gd_twitter_consumer_key");
+    	$twitter_consumer_secret = get_option("gd_twitter_consumer_secret");
+    	$facebook_app_id = get_option("gd_facebook_app_id");
+    	$facebook_app_secret = get_option("gd_facebook_app_secret");
+    	$facebook_comment_moderators = get_option("gd_facebook_comment_moderators");
+    	$facebook_comment_url = get_option("gd_facebook_comment_url");
+    	$votacao_url = get_option("gd_votacao_url");
+    	$votacao_root = get_option("gd_votacao_root");
+    	$votacao_altura = get_option("gd_votacao_altura");
+    	$twitter_stream_username = get_option("gd_twitter_stream_username");
+    	$twitter_stream_password = get_option("gd_twitter_stram_password");
+    	$twitter_mayor_username = get_option("gd_twitter_mayor_username");
+    	$twitter_hash_cabecalho = get_option("gd_twitter_hash_cabecalho");
+    	$galerias_destacadas_id = get_option("gd_galerias_destacadas_id");
+    	$video_paginacao = get_option("gd_video_paginacao");
+    	$from_addr = get_option("gd_from_addr");
+    	$smtp = get_option("gd_smtp");
+	}
+
+?>
+    <div class="wrap">
+        <?php screen_icon('themes'); ?> <h2>Opções de configuração do Gabinete Digital</h2>
+		<?php if ($msg != ""): ?>
+			<h3><?php echo $msg ?>
+		<?php endif ?>
+        <form method="POST" action="">
+        	<input type="hidden" name="update_settings" value="Y" />
+            <table class="form-table">
+            	<tr valign="top"><th colspan=2>
+            		<h2>Gerais</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="BASE_URL">
+                            Url principal (BASE_URL)
+                        </label>
+                    </th>
+                    <td><input type="text" name="BASE_URL" value="<?php echo $base_url;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="DATE_FORMAT">
+                            Formato da Data (DATE_FORMAT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="DATE_FORMAT" value="<?php echo $date_format;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Pairwise</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="PAIRWISE_SERVER">
+                            Servidor do Pairwise (PAIRWISE_SERVER)
+                        </label>
+                    </th>
+                    <td><input type="text" name="PAIRWISE_SERVER" value="<?php echo $pairwise_server;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="PAIRWISE_USERNAME">
+                            Usuário de acesso ao Pairwise (PAIRWISE_USERNAME)
+                        </label>
+                    </th>
+                    <td><input type="text" name="PAIRWISE_USERNAME" value="<?php echo $pairwise_username;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="PAIRWISE_PASSWORD">
+                            Senha de acesso ao Pairwise (PAIRWISE_PASSWORD)
+                        </label>
+                    </th>
+                    <td><input type="text" name="PAIRWISE_PASSWORD" value="<?php echo $pairwise_password;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Login via Twitter</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_CONSUMER_KEY">
+                            Consumer Key (TWITTER_CONSUMER_KEY)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_CONSUMER_KEY" value="<?php echo $twitter_consumer_key;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_CONSUMER_SECRET">
+                            Consumer Secret (TWITTER_CONSUMER_SECRET)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_CONSUMER_SECRET" value="<?php echo $twitter_consumer_secret;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Login via Facebook</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="FACEBOOK_APP_ID">
+                            Id da aplicação (FACEBOOK_APP_ID)
+                        </label>
+                    </th>
+                    <td><input type="text" name="FACEBOOK_APP_ID" value="<?php echo $facebook_app_id;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="FACEBOOK_APP_SECRET">
+                            Chave secreta da aplicação do Facebook (FACEBOOK_APP_SECRET)
+                        </label>
+                    </th>
+                    <td><input type="text" name="FACEBOOK_APP_SECRET" value="<?php echo $facebook_app_secret;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Comentários via Facebook</h2>
+            	</td>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="FACEBOOK_COMMENT_URL">
+                            URL base para comentários via Facebook (FACEBOOK_COMMENT_URL)
+                        </label>
+                    </th>
+                    <td><input type="text" name="FACEBOOK_COMMENT_URL" value="<?php echo $facebook_comment_url;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="FACEBOOK_COMMENT_MODERATORS">
+                            Moderadores para comentários no Facebook (FACEBOOK_COMMENT_MODERATORS)
+                        </label>
+                    </th>
+                    <td><input type="text" name="FACEBOOK_COMMENT_MODERATORS" value="<?php echo $facebook_comment_moderators;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Votação na capa do site</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="VOTACAO_URL">
+                            URL completa da página de votação (VOTACAO_URL)
+                        </label>
+                    </th>
+                    <td><input type="text" name="VOTACAO_URL" value="<?php echo $votacao_url;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="VOTACAO_ROOT">
+                            URL base do site de votação (VOTACAO_ROOT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="VOTACAO_ROOT" value="<?php echo $votacao_root;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="VOTACAO_ALTURA">
+                            Altura do iframe de votação na capa do site (VOTACAO_ALTURA)
+                        </label>
+                    </th>
+                    <td><input type="text" name="VOTACAO_ALTURA" value="<?php echo $votacao_altura;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Twitter - Capa do site</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_STREAM_USERNAME">
+                            Usuário do Twitter para captura dos twits no buzz (TWITTER_STREAM_USERNAME)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_STREAM_USERNAME" value="<?php echo $twitter_stream_username;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_STREAM_PASSWORD">
+                            Senha do Twitter (TWITTER_STREAM_PASSWORD)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_STREAM_PASSWORD" value="<?php echo $twitter_stream_password;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_MAYOR_USERNAME">
+                            Usuário do Twitter do Governador (TWITTER_MAYOR_USERNAME)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_MAYOR_USERNAME" value="<?php echo $twitter_mayor_username;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_HASH_CABECALHO">
+                            Texto de pequisa para twitts que aparecerão na capa do site (TWITTER_HASH_CABECALHO)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_HASH_CABECALHO" value="<?php echo $twitter_hash_cabecalho;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Galeria de fotos e vídeo</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="GALERIAS_DESTACADAS_ID">
+                            Id das galerias de fotos destacadas (GALERIAS_DESTACADAS_ID)
+                        </label>
+                    </th>
+                    <td><input type="text" name="GALERIAS_DESTACADAS_ID" value="<?php echo $galerias_destacadas_id;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="VIDEO_PAGINACAO">
+                            Nro de vídeos por página (VIDEO_PAGINACAO)
+                        </label>
+                    </th>
+                    <td><input type="text" name="VIDEO_PAGINACAO" value="<?php echo $video_paginacao;?>" size="25" /></td>
+                </tr>
+
+            	<tr valign="top"><th colspan=2>
+            		<h2>Emails</h2>
+            	</td>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SMTP">
+                            Servidor de emails (SMTP)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SMTP" value="<?php echo $smtp;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="FROM_ADDR">
+                            Endereço para respostas dos emails (FROM_ADDR)
+                        </label>
+                    </th>
+                    <td><input type="text" name="FROM_ADDR" value="<?php echo $from_addr;?>" size="25" /></td>
+                </tr>
+
+            </table>
+			<p>
+			    <input type="submit" value="Gravar configurações" class="button-primary"/>
+			</p>
+        </form>
+    </div>
+<?php
+}
+
+function setup_theme_admin_menus() {
+    add_submenu_page('themes.php',
+        'Front Page Elements', 'GD Config', 'manage_options',
+        'gd-config', 'gd_config_settings');
+}
+
+// This tells WordPress to call the function named "setup_theme_admin_menus"
+// when it's time to create the menu pages.
+add_action("admin_menu", "setup_theme_admin_menus");
+
+
+// Add stylesheet
+function admin_register_head() {
+	$url = dirname( get_bloginfo('stylesheet_url')) . '/gd_config.css';
+	echo "<link rel='stylesheet' href='$url' />\n";
+}
+add_action('admin_head', 'admin_register_head');
+
+function gabdig_getconfiguration($args){
+    #
+    # Método que retorna os dados das configurações gravadas
+    # na pagina de config do tema GabDig
+    #
+    $dados = array(
+      'base_url' => get_option("gd_base_url"),
+      'date_format' => get_option("gd_date_format"),
+      'pairwise_server' => get_option("gd_pairwise_server"),
+      'pairwise_username' => get_option("gd_pairwise_username"),
+      'pairwise_password' => get_option("gd_pairwise_password"),
+      'twitter_consumer_key' => get_option("gd_twitter_consumer_key"),
+      'twitter_consumer_secret' => get_option("gd_twitter_consumer_secret"),
+      'facebook_app_id' => get_option("gd_facebook_app_id"),
+      'facebook_app_secret' => get_option("gd_facebook_app_secret"),
+      'facebook_comment_moderators' => get_option("gd_facebook_comment_moderators"),
+      'facebook_comment_url' => get_option("gd_facebook_comment_url"),
+      'votacao_url' => get_option("gd_votacao_url"),
+      'votacao_root' => get_option("gd_votacao_root"),
+      'votacao_altura' => get_option("gd_votacao_altura"),
+      'twitter_stream_username' => get_option("gd_twitter_stream_username"),
+      'twitter_stream_password' => get_option("gd_twitter_stram_password"),
+      'twitter_mayor_username' => get_option("gd_twitter_mayor_username"),
+      'twitter_hash_cabecalho' => get_option("gd_twitter_hash_cabecalho"),
+      'galerias_destacadas_id' => get_option("gd_galerias_destacadas_id"),
+      'video_paginacao' => get_option("gd_video_paginacao"),
+      'from_addr' => get_option("gd_from_addr"),
+      'smtp' => get_option("gd_smtp")
+    );
+    return $dados;
+}
+
+function gabdig_register_methods( $methods ) {
+    $methods['gabdig.getConfiguration'] = 'gabdig_getconfiguration';
+    return $methods;
+}
+add_filter( 'xmlrpc_methods', 'gabdig_register_methods' );
+
+
 ?>
