@@ -1,0 +1,19 @@
+table.form-table{
+	width: 100%;
+	background-color: #eee;
+	border-radius: 5px;
+	box-shadow: 3px 2px 4px #c5c5c5;
+	margin-bottom: 10px;
+}
+
+table.form-table th{
+	width: 400px;
+}
+
+.gdtable input{
+	width: 450px;
+}
+
+.gdtable input[type='submit']{
+	width: 200px;
+}

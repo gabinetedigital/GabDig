@@ -270,7 +270,7 @@ function gd_config_settings() {
 		<?php endif ?>
         <form method="POST" action="">
         	<input type="hidden" name="update_settings" value="Y" />
-            <table class="form-table">
+            <table class="form-table gdtable">
             	<tr valign="top"><th colspan=2>
             		<h2>Gerais</h2>
             	</td>
