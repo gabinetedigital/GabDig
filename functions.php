@@ -234,9 +234,21 @@ function gd_config_settings() {
 
     	$smtp = esc_attr($_POST["SMTP"]);
     	update_option("gd_smtp", $smtp);
-    	
-    	$usuario_admin = esc_attr($_POST["USUARIO_ADMIN"]);
-    	update_option("gd_usr_adm", $usuario_admin);
+
+        $gdobra_usuario_admin = esc_attr($_POST["GDOBRA_USUARIO_ADMIN"]);
+    	update_option("gd_gdobra_usuario_admin", $gdobra_usuario_admin);
+
+    	$gdobra_apikey = esc_attr($_POST["GDOBRA_APIKEY"]);
+    	update_option("gd_gdobra_apikey", $gdobra_apikey);
+
+        $gdobra_privatekey = esc_attr($_POST["GDOBRA_PRIVATEKEY"]);
+    	update_option("gd_gdobra_privatekey", $gdobra_privatekey);
+
+        $gdobra_parturl = esc_attr($_POST["GDOBRA_PARTURL"]);
+    	update_option("gd_gdobra_parturl", $gdobra_parturl);
+
+        $gdobra_url = esc_attr($_POST["GDOBRA_URL"]);
+    	update_option("gd_gdobra_url", $gdobra_url);
 
     	$msg = "<h2>Configurações atualizadas!</h2>";
 	}else{
@@ -263,7 +275,12 @@ function gd_config_settings() {
     	$video_paginacao = get_option("gd_video_paginacao");
     	$from_addr = get_option("gd_from_addr");
     	$smtp = get_option("gd_smtp");
-		$usuario_admin = get_option("gd_usr_adm");
+		$gdobra_usuario_admin = get_option("gd_gdobra_usuario_admin");
+		$gdobra_apikey = get_option("gd_gdobra_apikey");
+		$gdobra_privatekey = get_option("gd_gdobra_privatekey");
+		$gdobra_parturl = get_option("gd_gdobra_parturl");
+		$gdobra_url = get_option("gd_gdobra_url");
+
 	}
 
 ?>
@@ -500,13 +517,52 @@ function gd_config_settings() {
                     <td><input type="text" name="FROM_ADDR" value="<?php echo $from_addr;?>" size="25" /></td>
                 </tr>
 
+            	<tr valign="top"><th colspan=2>
+            		<h2>Webservice SME</h2>
+            	</th></tr>
                 <tr valign="top">
                     <th scope="row">
-                        <label for="USUARIO_ADMIN">
-                            Código do usuário que vai incluir/atualizar o webservice (USUARIO_ADMIN)
+                        <label for="GDOBRA_USUARIO_ADMIN">
+                            Código usuário que vai incluir/atualizar o webservice (USUARIO_ADMIN)
                         </label>
                     </th>
-                    <td><input type="text" name="USUARIO_ADMIN" value="<?php echo $usuario_admin;?>" size="25" /></td>
+                    <td><input type="text" name="GDOBRA_USUARIO_ADMIN" value="<?php echo $gdobra_usuario_admin;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="GDOBRA_APIKEY">
+                            Código APIKEY informada no WS SME (GDOBRA_APIKEY)
+                        </label>
+                    </th>
+                    <td><input type="text" name="GDOBRA_APIKEY" value="<?php echo $gdobra_apikey;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="GDOBRA_PRIVATEKEY">
+                            Código PRIVATEKEY informada no WS SME (GDOBRA_PRIVATEKEY)
+                        </label>
+                    </th>
+                    <td><input type="text" name="GDOBRA_PRIVATEKEY" value="<?php echo $gdobra_privatekey;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="GDOBRA_PARTURL">
+                            Parte da URL informada no WS SME (GDOBRA_PARTURL)
+                        </label>
+                    </th>
+                    <td><input type="text" name="GDOBRA_PARTURL" value="<?php echo $gdobra_parturl;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="GDOBRA_URL">
+                            URL de chamada do WS do SME (GDOBRA_URL)
+                        </label>
+                    </th>
+                    <td><input type="text" name="GDOBRA_URL" value="<?php echo $gdobra_url;?>" size="25" /></td>
                 </tr>
 
             </table>
@@ -564,7 +620,11 @@ function gabdig_getconfiguration($args){
       'video_paginacao' => get_option("gd_video_paginacao"),
       'from_addr' => get_option("gd_from_addr"),
       'smtp' => get_option("gd_smtp"),
-      'usuario_admin' => get_option("gd_usr_adm")
+      'gdobra_usuario_admin' => get_option("gd_gdobra_usuario_admin"),
+      'gdobra_apikey' => get_option("gd_gdobra_apikey"),
+      'gdobra_privatekey' => get_option("gd_gdobra_privatekey"),
+      'gdobra_parturl' => get_option("gd_gdobra_parturl"),
+      'gdobra_url' => get_option("gd_gdobra_url")
     );
     return $dados;
 }
