@@ -234,6 +234,9 @@ function gd_config_settings() {
 
     	$smtp = esc_attr($_POST["SMTP"]);
     	update_option("gd_smtp", $smtp);
+    	
+    	$usuario_admin = esc_attr($_POST["USUARIO_ADMIN"]);
+    	update_option("gd_usr_adm", $usuario_admin);
 
     	$msg = "<h2>Configurações atualizadas!</h2>";
 	}else{
@@ -260,6 +263,7 @@ function gd_config_settings() {
     	$video_paginacao = get_option("gd_video_paginacao");
     	$from_addr = get_option("gd_from_addr");
     	$smtp = get_option("gd_smtp");
+		$usuario_admin = get_option("gd_usr_adm");
 	}
 
 ?>
@@ -496,6 +500,15 @@ function gd_config_settings() {
                     <td><input type="text" name="FROM_ADDR" value="<?php echo $from_addr;?>" size="25" /></td>
                 </tr>
 
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="USUARIO_ADMIN">
+                            Código do usuário que vai incluir/atualizar o webservice (USUARIO_ADMIN)
+                        </label>
+                    </th>
+                    <td><input type="text" name="USUARIO_ADMIN" value="<?php echo $usuario_admin;?>" size="25" /></td>
+                </tr>
+
             </table>
 			<p>
 			    <input type="submit" value="Gravar configurações" class="button-primary"/>
@@ -550,7 +563,8 @@ function gabdig_getconfiguration($args){
       'galerias_destacadas_id' => get_option("gd_galerias_destacadas_id"),
       'video_paginacao' => get_option("gd_video_paginacao"),
       'from_addr' => get_option("gd_from_addr"),
-      'smtp' => get_option("gd_smtp")
+      'smtp' => get_option("gd_smtp"),
+      'usuario_admin' => get_option("gd_usr_adm")
     );
     return $dados;
 }
