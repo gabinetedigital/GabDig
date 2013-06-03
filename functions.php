@@ -269,7 +269,13 @@ function gd_config_settings() {
         update_option("gd_comite_subject", $comite_subject);
 
         $comite_msg = esc_attr($_POST["COMITE_MSG"]);
-    	update_option("gd_comite_msg", $comite_msg);
+        update_option("gd_comite_msg", $comite_msg);
+
+        $seguirobra_subject = esc_attr($_POST["SEGUIROBRA_SUBJECT"]);
+        update_option("gd_seguirobra_subject", $seguirobra_subject);
+
+        $seguirobra_msg = esc_attr($_POST["SEGUIROBRA_MSG"]);
+    	update_option("gd_seguirobra_msg", $seguirobra_msg);
 
     	$msg = "<h2>Configurações atualizadas!</h2>";
 	}else{
@@ -309,6 +315,8 @@ function gd_config_settings() {
         $comite_to_email = get_option("gd_comite_to_email");
         $comite_subject = get_option("gd_comite_subject");
         $comite_msg = get_option("gd_comite_msg");
+        $seguirobra_subject = get_option("gd_seguirobra_subject");
+        $seguirobra_msg = get_option("gd_seguirobra_msg");
 
 	}
 
@@ -607,6 +615,24 @@ function gd_config_settings() {
                         </label>
                     </th>
                     <td><textarea rows="7" cols="55" name="COMITE_MSG"><?php echo $comite_msg;?></textarea></td>
+                </tr>
+
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEGUIROBRA_SUBJECT">
+                            Seguir Obra, título (SEGUIROBRA_SUBJECT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEGUIROBRA_SUBJECT" value="<?php echo $seguirobra_subject;?>" size="30" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEGUIROBRA_MSG">
+                            Seguir Obra, corpo (SEGUIROBRA_MSG)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="SEGUIROBRA_MSG"><?php echo $seguirobra_msg;?></textarea></td>
                 </tr>
 
             	<tr valign="top"><th colspan=2>
