@@ -248,7 +248,28 @@ function gd_config_settings() {
     	update_option("gd_gdobra_parturl", $gdobra_parturl);
 
         $gdobra_url = esc_attr($_POST["GDOBRA_URL"]);
-    	update_option("gd_gdobra_url", $gdobra_url);
+        update_option("gd_gdobra_url", $gdobra_url);
+
+        $password_remainder_subject = esc_attr($_POST["PASSWORD_REMAINDER_SUBJECT"]);
+        update_option("gd_password_remainder_subject", $password_remainder_subject);
+
+        $password_remainder_msg = esc_attr($_POST["PASSWORD_REMAINDER_MSG"]);
+        update_option("gd_password_remainder_msg", $password_remainder_msg);
+
+        $welcome_subject = esc_attr($_POST["WELCOME_SUBJECT"]);
+        update_option("gd_welcome_subject", $welcome_subject);
+
+        $welcome_msg = esc_attr($_POST["WELCOME_MSG"]);
+        update_option("gd_welcome_msg", $welcome_msg);
+
+        $comite_to_email = esc_attr($_POST["COMITE_TO_EMAIL"]);
+        update_option("gd_comite_to_email", $comite_to_email);
+
+        $comite_subject = esc_attr($_POST["COMITE_SUBJECT"]);
+        update_option("gd_comite_subject", $comite_subject);
+
+        $comite_msg = esc_attr($_POST["COMITE_MSG"]);
+    	update_option("gd_comite_msg", $comite_msg);
 
     	$msg = "<h2>Configurações atualizadas!</h2>";
 	}else{
@@ -280,6 +301,14 @@ function gd_config_settings() {
 		$gdobra_privatekey = get_option("gd_gdobra_privatekey");
 		$gdobra_parturl = get_option("gd_gdobra_parturl");
 		$gdobra_url = get_option("gd_gdobra_url");
+
+        $password_remainder_subject = get_option("gd_password_remainder_subject");
+        $password_remainder_msg = get_option("gd_password_remainder_msg");
+        $welcome_subject = get_option("gd_welcome_subject");
+        $welcome_msg = get_option("gd_welcome_msg");
+        $comite_to_email = get_option("gd_comite_to_email");
+        $comite_subject = get_option("gd_comite_subject");
+        $comite_msg = get_option("gd_comite_msg");
 
 	}
 
@@ -498,7 +527,7 @@ function gd_config_settings() {
 
             	<tr valign="top"><th colspan=2>
             		<h2>Emails</h2>
-            	</td>
+            	</th></tr>
                 <tr valign="top">
                     <th scope="row">
                         <label for="SMTP">
@@ -515,6 +544,69 @@ function gd_config_settings() {
                         </label>
                     </th>
                     <td><input type="text" name="FROM_ADDR" value="<?php echo $from_addr;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top"><th colspan=2>
+                    <h2>Emails - Mensagens</h2>
+                </th></tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="PASSWORD_REMAINDER_SUBJECT">
+                            Esqueci a senha, título (PASSWORD_REMAINDER_SUBJECT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="PASSWORD_REMAINDER_SUBJECT" value="<?php echo $password_remainder_subject;?>" size="30" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="PASSWORD_REMAINDER_MSG">
+                            Esqueci a senha, corpo (PASSWORD_REMAINDER_MSG)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="PASSWORD_REMAINDER_MSG"><?php echo $password_remainder_msg;?></textarea></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="WELCOME_SUBJECT">
+                            Boas vindas, título (WELCOME_SUBJECT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="WELCOME_SUBJECT" value="<?php echo $welcome_subject;?>" size="30" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="WELCOME_MSG">
+                            Boas vindas, corpo (WELCOME_MSG)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="WELCOME_MSG"><?php echo $welcome_msg;?></textarea></td>
+                </tr>
+
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="COMITE_TO_EMAIL">
+                            Comite de Transito, TO email (COMITE_TO_EMAIL)
+                        </label>
+                    </th>
+                    <td><input type="text" name="COMITE_TO_EMAIL" value="<?php echo $comite_to_email;?>" size="30" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="COMITE_SUBJECT">
+                            Comite de Transito, título (COMITE_SUBJECT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="COMITE_SUBJECT" value="<?php echo $comite_subject;?>" size="30" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="COMITE_MSG">
+                            Comite de Transito, corpo (COMITE_MSG)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="COMITE_MSG"><?php echo $comite_msg;?></textarea></td>
                 </tr>
 
             	<tr valign="top"><th colspan=2>
