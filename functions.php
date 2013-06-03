@@ -742,7 +742,16 @@ function gabdig_getconfiguration($args){
       'gdobra_apikey' => get_option("gd_gdobra_apikey"),
       'gdobra_privatekey' => get_option("gd_gdobra_privatekey"),
       'gdobra_parturl' => get_option("gd_gdobra_parturl"),
-      'gdobra_url' => get_option("gd_gdobra_url")
+      'gdobra_url' => get_option("gd_gdobra_url"),
+      'password_remainder_subject' => get_option("gd_password_remainder_subject"),
+      'password_remainder_msg' => get_option("gd_password_remainder_msg"),
+      'welcome_subject' => get_option("gd_welcome_subject"),
+      'welcome_msg' => get_option("gd_welcome_msg"),
+      'comite_to_email' => get_option("gd_comite_to_email"),
+      'comite_subject' => get_option("gd_comite_subject"),
+      'comite_msg' => get_option("gd_comite_msg"),
+      'seguirobra_subject' => get_option("gd_seguirobra_subject"),
+      'seguirobra_msg' => get_option("gd_seguirobra_msg"),
     );
     return $dados;
 }
