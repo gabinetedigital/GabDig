@@ -172,8 +172,11 @@ function gd_config_settings() {
 	    $base_url = esc_attr($_POST["BASE_URL"]);
     	update_option("gd_base_url", $base_url);
 
-	    $date_format = esc_attr($_POST["DATE_FORMAT"]);
-    	update_option("gd_date_format", $date_format);
+        $date_format = esc_attr($_POST["DATE_FORMAT"]);
+        update_option("gd_date_format", $date_format);
+
+	    $valor_investimentos = esc_attr($_POST["VALOR_INVESTIMENTOS"]);
+    	update_option("gd_valor_investimentos", $valor_investimentos);
 
 	    $pairwise_server = esc_attr($_POST["PAIRWISE_SERVER"]);
     	update_option("gd_pairwise_server", $pairwise_server);
@@ -281,7 +284,8 @@ function gd_config_settings() {
 	}else{
 		# => Busca as configurações já gravadas
 		$base_url = get_option("gd_base_url");
-	    $date_format = get_option("gd_date_format");
+        $date_format = get_option("gd_date_format");
+	    $valor_investimentos = get_option("gd_valor_investimentos");
 	    $pairwise_server = get_option("gd_pairwise_server");
 	    $pairwise_username = get_option("gd_pairwise_username");
     	$pairwise_password = get_option("gd_pairwise_password");
@@ -347,6 +351,14 @@ function gd_config_settings() {
                         </label>
                     </th>
                     <td><input type="text" name="DATE_FORMAT" value="<?php echo $date_format;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="VALOR_INVESTIMENTOS">
+                            Valor de investimentos no estado (VALOR_INVESTIMENTOS)
+                        </label>
+                    </th>
+                    <td><input type="text" name="VALOR_INVESTIMENTOS" value="<?php echo $valor_investimentos;?>" size="25" /></td>
                 </tr>
 
             	<tr valign="top"><th colspan=2>
@@ -718,6 +730,7 @@ function gabdig_getconfiguration($args){
     $dados = array(
       'base_url' => get_option("gd_base_url"),
       'date_format' => get_option("gd_date_format"),
+      'valor_investimentos' => get_option("gd_valor_investimentos"),
       'pairwise_server' => get_option("gd_pairwise_server"),
       'pairwise_username' => get_option("gd_pairwise_username"),
       'pairwise_password' => get_option("gd_pairwise_password"),
