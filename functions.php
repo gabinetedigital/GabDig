@@ -190,8 +190,14 @@ function gd_config_settings() {
     	$twitter_consumer_key = esc_attr($_POST["TWITTER_CONSUMER_KEY"]);
     	update_option("gd_twitter_consumer_key", $twitter_consumer_key);
 
-    	$twitter_consumer_secret = esc_attr($_POST["TWITTER_CONSUMER_SECRET"]);
-    	update_option("gd_twitter_consumer_secret", $twitter_consumer_secret);
+        $twitter_consumer_secret = esc_attr($_POST["TWITTER_CONSUMER_SECRET"]);
+        update_option("gd_twitter_consumer_secret", $twitter_consumer_secret);
+
+        $twitter_access_token = esc_attr($_POST["TWITTER_ACCESS_TOKEN"]);
+        update_option("gd_twitter_access_token", $twitter_access_token);
+
+    	$twitter_access_token_secret = esc_attr($_POST["TWITTER_ACCESS_TOKEN_SECRET"]);
+    	update_option("gd_twitter_access_token_secret", $twitter_access_token_secret);
 
     	$facebook_app_id = esc_attr($_POST["FACEBOOK_APP_ID"]);
     	update_option("gd_facebook_app_id", $facebook_app_id);
@@ -290,7 +296,9 @@ function gd_config_settings() {
 	    $pairwise_username = get_option("gd_pairwise_username");
     	$pairwise_password = get_option("gd_pairwise_password");
     	$twitter_consumer_key = get_option("gd_twitter_consumer_key");
-    	$twitter_consumer_secret = get_option("gd_twitter_consumer_secret");
+        $twitter_consumer_secret = get_option("gd_twitter_consumer_secret");
+        $twitter_access_token = get_option("gd_twitter_access_token");
+    	$twitter_access_token_secret = get_option("gd_twitter_access_token_secret");
     	$facebook_app_id = get_option("gd_facebook_app_id");
     	$facebook_app_secret = get_option("gd_facebook_app_secret");
     	$facebook_comment_moderators = get_option("gd_facebook_comment_moderators");
@@ -392,7 +400,7 @@ function gd_config_settings() {
                 </tr>
 
             	<tr valign="top"><th colspan=2>
-            		<h2>Login via Twitter</h2>
+            		<h2>App dp Twitter</h2>
             	</td>
                 <tr valign="top">
                     <th scope="row">
@@ -410,6 +418,24 @@ function gd_config_settings() {
                         </label>
                     </th>
                     <td><input type="text" name="TWITTER_CONSUMER_SECRET" value="<?php echo $twitter_consumer_secret;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_ACCESS_TOKEN">
+                            Consumer Secret (TWITTER_ACCESS_TOKEN)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_ACCESS_TOKEN" value="<?php echo $twitter_access_token;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="TWITTER_ACCESS_TOKEN_SECRET">
+                            Consumer Secret (TWITTER_ACCESS_TOKEN_SECRET)
+                        </label>
+                    </th>
+                    <td><input type="text" name="TWITTER_ACCESS_TOKEN_SECRET" value="<?php echo $twitter_access_token_secret;?>" size="25" /></td>
                 </tr>
 
             	<tr valign="top"><th colspan=2>
@@ -736,6 +762,8 @@ function gabdig_getconfiguration($args){
       'pairwise_password' => get_option("gd_pairwise_password"),
       'twitter_consumer_key' => get_option("gd_twitter_consumer_key"),
       'twitter_consumer_secret' => get_option("gd_twitter_consumer_secret"),
+      'twitter_access_token' => get_option("gd_twitter_access_token"),
+      'twitter_access_token_secret' => get_option("gd_twitter_access_token_secret"),
       'facebook_app_id' => get_option("gd_facebook_app_id"),
       'facebook_app_secret' => get_option("gd_facebook_app_secret"),
       'facebook_comment_moderators' => get_option("gd_facebook_comment_moderators"),
