@@ -286,6 +286,31 @@ function gd_config_settings() {
         $seguirobra_msg = esc_attr($_POST["SEGUIROBRA_MSG"]);
     	update_option("gd_seguirobra_msg", $seguirobra_msg);
 
+        $seminario_categoria_id = esc_attr($_POST["SEMINARIO_CATEGORIA_ID"]);
+        update_option("gd_seminario_categoria_id", $seminario_categoria_id);
+
+        $seminario_twitter_tag = esc_attr($_POST["SEMINARIO_TWITTER_TAG"]);
+        update_option("gd_seminario_twitter_tag", $seminario_twitter_tag);
+
+        $seminario_flickr_tag = esc_attr($_POST["SEMINARIO_FLICKR_TAG"]);
+        update_option("gd_seminario_flickr_tag", $seminario_flickr_tag);
+
+        $seminario_instagram_tag = esc_attr($_POST["SEMINARIO_INSTAGRAM_TAG"]);
+        update_option("gd_seminario_instagram_tag", $seminario_instagram_tag);
+
+        $flickr_app_key = esc_attr($_POST["FLICKR_APP_KEY"]);
+        update_option("gd_flickr_app_key", $flickr_app_key);
+
+        $flickr_app_secret = esc_attr($_POST["FLICKR_APP_SECRET"]);
+        update_option("gd_flickr_app_secret", $flickr_app_secret);
+
+        $instagram_app_key = esc_attr($_POST["INSTAGRAM_APP_KEY"]);
+        update_option("gd_instagram_app_key", $instagram_app_key);
+
+        $instagram_app_secret = esc_attr($_POST["INSTAGRAM_APP_SECRET"]);
+        update_option("gd_instagram_app_secret", $instagram_app_secret);
+
+
     	$msg = "<h2>Configurações atualizadas!</h2>";
 	}else{
 		# => Busca as configurações já gravadas
@@ -329,6 +354,17 @@ function gd_config_settings() {
         $comite_msg = get_option("gd_comite_msg");
         $seguirobra_subject = get_option("gd_seguirobra_subject");
         $seguirobra_msg = get_option("gd_seguirobra_msg");
+
+        $seminario_categoria_id = get_option("gd_seminario_categoria_id");
+        $seminario_twitter_tag = get_option("gd_seminario_twitter_tag");
+        $seminario_flickr_tag = get_option("gd_seminario_flickr_tag");
+        $seminario_instagram_tag = get_option("gd_seminario_instagram_tag");
+
+        $flickr_app_key = get_option("gd_flickr_app_key");
+        $flickr_app_secret = get_option("gd_flickr_app_secret");
+        $instagram_app_key = get_option("gd_instagram_app_key");
+        $instagram_app_secret = get_option("gd_instagram_app_secret");
+
 
 	}
 
@@ -721,6 +757,86 @@ function gd_config_settings() {
                     <td><input type="text" name="GDOBRA_URL" value="<?php echo $gdobra_url;?>" size="25" /></td>
                 </tr>
 
+                <tr valign="top"><th colspan=2>
+                    <h2>HOTSITE Seminário Crise da Representação</h2>
+                </th></tr>
+
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMINARIO_CATEGORIA_ID">
+                            Categoria dos posts (SEMINARIO_CATEGORIA_ID)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEMINARIO_CATEGORIA_ID" value="<?php echo $seminario_categoria_id;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMINARIO_TWITTER_TAG">
+                            Hash de procura no twitter (SEMINARIO_TWITTER_TAG)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEMINARIO_TWITTER_TAG" value="<?php echo $seminario_twitter_tag;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMINARIO_FLICKR_TAG">
+                            Tag de procura no Flickr (SEMINARIO_FLICKR_TAG)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEMINARIO_FLICKR_TAG" value="<?php echo $seminario_flickr_tag;?>" size="25" />
+                    <p>Para separar use vírgulas. A busca é feita com TODAS as tags juntas.</p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMINARIO_INSTAGRAM_TAG">
+                            Tag de procura no Instagram (SEMINARIO_INSTAGRAM_TAG)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEMINARIO_INSTAGRAM_TAG" value="<?php echo $seminario_instagram_tag;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top"><th colspan=2>
+                    <h2>Flickr APP</h2>
+                </th></tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="FLICKR_APP_KEY">
+                            Chave (FLICKR_APP_KEY)
+                        </label>
+                    </th>
+                    <td><input type="text" name="FLICKR_APP_KEY" value="<?php echo $flickr_app_key;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="FLICKR_APP_SECRET">
+                            Chave (FLICKR_APP_SECRET)
+                        </label>
+                    </th>
+                    <td><input type="text" name="FLICKR_APP_SECRET" value="<?php echo $flickr_app_secret;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top"><th colspan=2>
+                    <h2>Instagram APP</h2>
+                </th></tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="INSTAGRAM_APP_KEY">
+                            Chave (INSTAGRAM_APP_KEY)
+                        </label>
+                    </th>
+                    <td><input type="text" name="INSTAGRAM_APP_KEY" value="<?php echo $instagram_app_key;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="INSTAGRAM_APP_SECRET">
+                            Chave (INSTAGRAM_APP_SECRET)
+                        </label>
+                    </th>
+                    <td><input type="text" name="INSTAGRAM_APP_SECRET" value="<?php echo $instagram_app_secret;?>" size="25" /></td>
+                </tr>
+
+
             </table>
 			<p>
 			    <input type="submit" value="Gravar configurações" class="button-primary"/>
@@ -793,6 +909,14 @@ function gabdig_getconfiguration($args){
       'comite_msg' => get_option("gd_comite_msg"),
       'seguirobra_subject' => get_option("gd_seguirobra_subject"),
       'seguirobra_msg' => get_option("gd_seguirobra_msg"),
+      'seminario_twitter_tag' => get_option("gd_seminario_twitter_tag"),
+      'seminario_flickr_tag' => get_option("gd_seminario_flickr_tag"),
+      'seminario_instagram_tag' => get_option("gd_seminario_instagram_tag"),
+      'seminario_categoria_id' => get_option("gd_seminario_categoria_id"),
+      'flickr_app_key' => get_option("gd_flickr_app_key"),
+      'flickr_app_secret' => get_option("gd_flickr_app_secret"),
+      'instagram_app_key' => get_option("gd_instagram_app_key"),
+      'instagram_app_secret' => get_option("gd_instagram_app_secret")
     );
     return $dados;
 }
