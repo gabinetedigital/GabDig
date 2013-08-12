@@ -297,7 +297,7 @@ function gd_config_settings() {
 
         $seminario_instagram_tag = esc_attr($_POST["SEMINARIO_INSTAGRAM_TAG"]);
         update_option("gd_seminario_instagram_tag", $seminario_instagram_tag);
-
+    
         $flickr_app_key = esc_attr($_POST["FLICKR_APP_KEY"]);
         update_option("gd_flickr_app_key", $flickr_app_key);
 
@@ -306,6 +306,12 @@ function gd_config_settings() {
 
         $instagram_app_key = esc_attr($_POST["INSTAGRAM_APP_KEY"]);
         update_option("gd_instagram_app_key", $instagram_app_key);
+
+        $instagram_user = esc_attr($_POST["INSTAGRAM_USER"]);
+        update_option("gd_instagram_user", $instagram_user);
+
+        $instagram_token = esc_attr($_POST["INSTAGRAM_TOKEN"]);
+        update_option("gd_instagram_token", $instagram_token);
 
         $instagram_app_secret = esc_attr($_POST["INSTAGRAM_APP_SECRET"]);
         update_option("gd_instagram_app_secret", $instagram_app_secret);
@@ -362,6 +368,8 @@ function gd_config_settings() {
 
         $flickr_app_key = get_option("gd_flickr_app_key");
         $flickr_app_secret = get_option("gd_flickr_app_secret");
+        $instagram_user = get_option("gd_instagram_user");
+        $instagram_token = get_option("gd_instagram_token");
         $instagram_app_key = get_option("gd_instagram_app_key");
         $instagram_app_secret = get_option("gd_instagram_app_secret");
 
@@ -436,7 +444,7 @@ function gd_config_settings() {
                 </tr>
 
             	<tr valign="top"><th colspan=2>
-            		<h2>App dp Twitter</h2>
+            		<h2>App do Twitter</h2>
             	</td>
                 <tr valign="top">
                     <th scope="row">
@@ -821,6 +829,23 @@ function gd_config_settings() {
                 </th></tr>
                 <tr valign="top">
                     <th scope="row">
+                        <label for="INSTAGRAM_USER">
+                            Chave (INSTAGRAM_USER)
+                        </label>
+                    </th>
+                    <td><input type="text" name="INSTAGRAM_USER" value="<?php echo $instagram_user;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="INSTAGRAM_TOKEN">
+                            Chave (INSTAGRAM_TOKEN)
+                        </label>
+                    </th>
+                    <td><input type="text" name="INSTAGRAM_TOKEN" value="<?php echo $instagram_token;?>" size="25" /></td>
+                </tr>
+
+                <tr valign="top">
+                    <th scope="row">
                         <label for="INSTAGRAM_APP_KEY">
                             Chave (INSTAGRAM_APP_KEY)
                         </label>
@@ -916,7 +941,9 @@ function gabdig_getconfiguration($args){
       'flickr_app_key' => get_option("gd_flickr_app_key"),
       'flickr_app_secret' => get_option("gd_flickr_app_secret"),
       'instagram_app_key' => get_option("gd_instagram_app_key"),
-      'instagram_app_secret' => get_option("gd_instagram_app_secret")
+      'instagram_app_secret' => get_option("gd_instagram_app_secret"),
+      'instagram_user' => get_option("gd_instagram_user"),
+      'instagram_token' => get_option("gd_instagram_token")
     );
     return $dados;
 }
