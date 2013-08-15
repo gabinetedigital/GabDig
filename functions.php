@@ -297,6 +297,12 @@ function gd_config_settings() {
 
         $seminario_instagram_tag = esc_attr($_POST["SEMINARIO_INSTAGRAM_TAG"]);
         update_option("gd_seminario_instagram_tag", $seminario_instagram_tag);
+
+        $seminario_subject = esc_attr($_POST["SEMINARIO_SUBJECT"]);
+        update_option("gd_seminario_subject", $seminario_subject);
+        
+        $seminario_msg = esc_attr($_POST["SEMINARIO_MSG"]);
+        update_option("gd_seminario_msg", $seminario_msg);
     
         $flickr_app_key = esc_attr($_POST["FLICKR_APP_KEY"]);
         update_option("gd_flickr_app_key", $flickr_app_key);
@@ -315,7 +321,6 @@ function gd_config_settings() {
 
         $instagram_app_secret = esc_attr($_POST["INSTAGRAM_APP_SECRET"]);
         update_option("gd_instagram_app_secret", $instagram_app_secret);
-
 
     	$msg = "<h2>Configurações atualizadas!</h2>";
 	}else{
@@ -365,6 +370,8 @@ function gd_config_settings() {
         $seminario_twitter_tag = get_option("gd_seminario_twitter_tag");
         $seminario_flickr_tag = get_option("gd_seminario_flickr_tag");
         $seminario_instagram_tag = get_option("gd_seminario_instagram_tag");
+        $seminario_subject = get_option("gd_seminario_subject");
+        $seminario_msg = get_option("gd_seminario_msg");
 
         $flickr_app_key = get_option("gd_flickr_app_key");
         $flickr_app_secret = get_option("gd_flickr_app_secret");
@@ -803,6 +810,22 @@ function gd_config_settings() {
                     </th>
                     <td><input type="text" name="SEMINARIO_INSTAGRAM_TAG" value="<?php echo $seminario_instagram_tag;?>" size="25" /></td>
                 </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMNIARIO_SUBJECT">
+                            Mensagem de inscrição, subject (SEMNIARIO_SUBJECT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEMNIARIO_SUBJECT" value="<?php echo $seminario_subject;?>" size="30" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMINARIO_MSG">
+                            Mensagem de inscrição, corpo (SEMINARIO_MSG)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="SEMINARIO_MSG"><?php echo $seminario_msg;?></textarea></td>
+                </tr>
 
                 <tr valign="top"><th colspan=2>
                     <h2>Flickr APP</h2>
@@ -943,7 +966,9 @@ function gabdig_getconfiguration($args){
       'instagram_app_key' => get_option("gd_instagram_app_key"),
       'instagram_app_secret' => get_option("gd_instagram_app_secret"),
       'instagram_user' => get_option("gd_instagram_user"),
-      'instagram_token' => get_option("gd_instagram_token")
+      'instagram_token' => get_option("gd_instagram_token"),
+      'seminario_subject' => get_option("gd_seminario_subject"),
+      'seminario_msg' => get_option("gd_seminario_msg")
     );
     return $dados;
 }
