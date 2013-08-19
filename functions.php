@@ -286,6 +286,9 @@ function gd_config_settings() {
         $seguirobra_msg = esc_attr($_POST["SEGUIROBRA_MSG"]);
     	update_option("gd_seguirobra_msg", $seguirobra_msg);
 
+        $seminario_json_url = esc_attr($_POST["SEMINARIO_JSON_URL"]);
+        update_option("gd_seminario_json_url", $seminario_json_url);
+
         $seminario_categoria_id = esc_attr($_POST["SEMINARIO_CATEGORIA_ID"]);
         update_option("gd_seminario_categoria_id", $seminario_categoria_id);
 
@@ -372,6 +375,7 @@ function gd_config_settings() {
         $seguirobra_subject = get_option("gd_seguirobra_subject");
         $seguirobra_msg = get_option("gd_seguirobra_msg");
 
+        $seminario_json_url = get_option("gd_seminario_json_url");
         $seminario_categoria_id = get_option("gd_seminario_categoria_id");
         $seminario_twitter_tag = get_option("gd_seminario_twitter_tag");
         $seminario_flickr_tag = get_option("gd_seminario_flickr_tag");
@@ -786,6 +790,14 @@ function gd_config_settings() {
 
                 <tr valign="top">
                     <th scope="row">
+                        <label for="SEMINARIO_JSON_URL">
+                            Categoria dos posts (SEMINARIO_JSON_URL)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEMINARIO_JSON_URL" value="<?php echo $seminario_json_url;?>" size="25" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
                         <label for="SEMINARIO_CATEGORIA_ID">
                             Categoria dos posts (SEMINARIO_CATEGORIA_ID)
                         </label>
@@ -984,6 +996,7 @@ function gabdig_getconfiguration($args){
       'seminario_twitter_tag' => get_option("gd_seminario_twitter_tag"),
       'seminario_flickr_tag' => get_option("gd_seminario_flickr_tag"),
       'seminario_instagram_tag' => get_option("gd_seminario_instagram_tag"),
+      'seminario_json_url' => get_option("gd_seminario_json_url"),
       'seminario_categoria_id' => get_option("gd_seminario_categoria_id"),
       'flickr_app_key' => get_option("gd_flickr_app_key"),
       'flickr_app_secret' => get_option("gd_flickr_app_secret"),
@@ -993,7 +1006,7 @@ function gabdig_getconfiguration($args){
       'instagram_token' => get_option("gd_instagram_token"),
       'seminario_subject' => get_option("gd_seminario_subject"),
       'seminario_moderadores' => get_option("gd_seminario_moderadores"),
-      'seminario_aovivo' => get_option("gd_seminario_aovivo"),
+      'seminario_aovivo' => html_entity_decode(get_option("gd_seminario_aovivo")),
       'seminario_msg' => get_option("gd_seminario_msg")
     );
     return $dados;
