@@ -307,6 +307,9 @@ function gd_config_settings() {
         $seminario_msg = esc_attr($_POST["SEMINARIO_MSG"]);
         update_option("gd_seminario_msg", $seminario_msg);
     
+        $seminario_aovivo = htmlentities(stripslashes($_POST["SEMINARIO_AOVIVO"]));
+        update_option("gd_seminario_aovivo", $seminario_aovivo);
+    
         $flickr_app_key = esc_attr($_POST["FLICKR_APP_KEY"]);
         update_option("gd_flickr_app_key", $flickr_app_key);
 
@@ -376,6 +379,7 @@ function gd_config_settings() {
         $seminario_subject = get_option("gd_seminario_subject");
         $seminario_moderadores = get_option("gd_seminario_moderadores");
         $seminario_msg = get_option("gd_seminario_msg");
+        $seminario_aovivo = html_entity_decode(get_option("gd_seminario_aovivo"));
 
         $flickr_app_key = get_option("gd_flickr_app_key");
         $flickr_app_secret = get_option("gd_flickr_app_secret");
@@ -838,6 +842,14 @@ function gd_config_settings() {
                     </th>
                     <td><input type="text" name="SEMINARIO_MODERADORES" value="<?php echo $seminario_moderadores;?>" size="30" /><p>Separado por virgulas</p></td>
                 </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMINARIO_AOVIVO">
+                            Ao VIVO, embed (SEMINARIO_AOVIVO)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="SEMINARIO_AOVIVO"><?php echo $seminario_aovivo;?></textarea></td>
+                </tr>
 
                 <tr valign="top"><th colspan=2>
                     <h2>Flickr APP</h2>
@@ -981,6 +993,7 @@ function gabdig_getconfiguration($args){
       'instagram_token' => get_option("gd_instagram_token"),
       'seminario_subject' => get_option("gd_seminario_subject"),
       'seminario_moderadores' => get_option("gd_seminario_moderadores"),
+      'seminario_aovivo' => get_option("gd_seminario_aovivo"),
       'seminario_msg' => get_option("gd_seminario_msg")
     );
     return $dados;
