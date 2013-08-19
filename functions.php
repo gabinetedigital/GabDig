@@ -301,6 +301,9 @@ function gd_config_settings() {
         $seminario_subject = esc_attr($_POST["SEMINARIO_SUBJECT"]);
         update_option("gd_seminario_subject", $seminario_subject);
         
+        $seminario_moderadores = esc_attr($_POST["SEMINARIO_MODERADORES"]);
+        update_option("gd_seminario_moderadores", $seminario_moderadores);
+        
         $seminario_msg = esc_attr($_POST["SEMINARIO_MSG"]);
         update_option("gd_seminario_msg", $seminario_msg);
     
@@ -371,6 +374,7 @@ function gd_config_settings() {
         $seminario_flickr_tag = get_option("gd_seminario_flickr_tag");
         $seminario_instagram_tag = get_option("gd_seminario_instagram_tag");
         $seminario_subject = get_option("gd_seminario_subject");
+        $seminario_moderadores = get_option("gd_seminario_moderadores");
         $seminario_msg = get_option("gd_seminario_msg");
 
         $flickr_app_key = get_option("gd_flickr_app_key");
@@ -812,11 +816,11 @@ function gd_config_settings() {
                 </tr>
                 <tr valign="top">
                     <th scope="row">
-                        <label for="SEMNIARIO_SUBJECT">
-                            Mensagem de inscrição, subject (SEMNIARIO_SUBJECT)
+                        <label for="SEMINARIO_SUBJECT">
+                            Mensagem de inscrição, subject (SEMINARIO_SUBJECT)
                         </label>
                     </th>
-                    <td><input type="text" name="SEMNIARIO_SUBJECT" value="<?php echo $seminario_subject;?>" size="30" /></td>
+                    <td><input type="text" name="SEMINARIO_SUBJECT" value="<?php echo $seminario_subject;?>" size="30" /></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">
@@ -825,6 +829,14 @@ function gd_config_settings() {
                         </label>
                     </th>
                     <td><textarea rows="7" cols="55" name="SEMINARIO_MSG"><?php echo $seminario_msg;?></textarea></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="SEMINARIO_MODERADORES">
+                            Email de quem pode excluir postagens (SEMINARIO_MODERADORES)
+                        </label>
+                    </th>
+                    <td><input type="text" name="SEMINARIO_MODERADORES" value="<?php echo $seminario_moderadores;?>" size="30" /><p>Separado por virgulas</p></td>
                 </tr>
 
                 <tr valign="top"><th colspan=2>
@@ -968,6 +980,7 @@ function gabdig_getconfiguration($args){
       'instagram_user' => get_option("gd_instagram_user"),
       'instagram_token' => get_option("gd_instagram_token"),
       'seminario_subject' => get_option("gd_seminario_subject"),
+      'seminario_moderadores' => get_option("gd_seminario_moderadores"),
       'seminario_msg' => get_option("gd_seminario_msg")
     );
     return $dados;
