@@ -286,6 +286,15 @@ function gd_config_settings() {
         $seguirobra_msg = esc_attr($_POST["SEGUIROBRA_MSG"]);
     	update_option("gd_seguirobra_msg", $seguirobra_msg);
 
+        $obra_atualizacao_subject = esc_attr($_POST["OBRA_ATUALIZACAO_SUBJECT"]);
+        update_option("gd_obra_subject", $obra_atualizacao_subject);
+
+        $obra_atualizacao_msg = esc_attr($_POST["OBRA_ATUALIZACAO_MSG"]);
+        update_option("gd_obra_atualizacao_msg", $obra_atualizacao_msg);
+
+        $obra_atualizacao_twitter = esc_attr($_POST["OBRA_ATUALIZACAO_TWITTER"]);
+        update_option("gd_obra_atualizacao_twitter", $obra_atualizacao_twitter);
+
         $seminario_json_url = esc_attr($_POST["SEMINARIO_JSON_URL"]);
         update_option("gd_seminario_json_url", $seminario_json_url);
 
@@ -374,6 +383,9 @@ function gd_config_settings() {
         $comite_msg = get_option("gd_comite_msg");
         $seguirobra_subject = get_option("gd_seguirobra_subject");
         $seguirobra_msg = get_option("gd_seguirobra_msg");
+        $obra_atualizacao_subject = get_option("gd_obra_atualizacao_subject");
+        $obra_atualizacao_msg = html_entity_decode(get_option("gd_obra_atualizacao_msg"));
+        $obra_atualizacao_twitter = html_entity_decode(get_option("gd_obra_atualizacao_twitter"));
 
         $seminario_json_url = get_option("gd_seminario_json_url");
         $seminario_categoria_id = get_option("gd_seminario_categoria_id");
@@ -736,6 +748,32 @@ function gd_config_settings() {
                     <td><textarea rows="7" cols="55" name="SEGUIROBRA_MSG"><?php echo $seguirobra_msg;?></textarea></td>
                 </tr>
 
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="OBRA_ATUALIZACAO_SUBJECT">
+                            Atualização das obras, título (OBRA_ATUALIZACAO_SUBJECT)
+                        </label>
+                    </th>
+                    <td><input type="text" name="OBRA_ATUALIZACAO_SUBJECT" value="<?php echo $obra_atualizacao_subject;?>" size="30" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="OBRA_ATUALIZACAO_MSG">
+                            Atualização das obras, corpo (OBRA_ATUALIZACAO_MSG)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="OBRA_ATUALIZACAO_MSG"><?php echo $obra_atualizacao_msg;?></textarea></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">
+                        <label for="OBRA_ATUALIZACAO_TWITTER">
+                            Atualização das obras, mensagem para twitter (140 caracteres) (OBRA_ATUALIZACAO_TWITTER)
+                        </label>
+                    </th>
+                    <td><textarea rows="7" cols="55" name="OBRA_ATUALIZACAO_TWITTER"><?php echo $obra_atualizacao_twitter;?></textarea></td>
+                </tr>
+
+
             	<tr valign="top"><th colspan=2>
             		<h2>Webservice SME</h2>
             	</th></tr>
@@ -1007,7 +1045,10 @@ function gabdig_getconfiguration($args){
       'seminario_subject' => get_option("gd_seminario_subject"),
       'seminario_moderadores' => get_option("gd_seminario_moderadores"),
       'seminario_aovivo' => html_entity_decode(get_option("gd_seminario_aovivo")),
-      'seminario_msg' => get_option("gd_seminario_msg")
+      'seminario_msg' => get_option("gd_seminario_msg"),
+      'obra_atualizacao_subject' => get_option("gd_obra_atualizacao_subject"),
+      'obra_atualizacao_msg' => html_entity_decode(get_option("gd_obra_atualizacao_msg")),
+      'obra_atualizacao_twitter' => html_entity_decode(get_option("gd_obra_atualizacao_twitter"))
     );
     return $dados;
 }
