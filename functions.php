@@ -53,6 +53,16 @@ function twentyeleven_procergs_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
+
+    register_sidebar( array(
+        'name' => __( 'Cabeçalho', 'twentyeleven' ),
+        'id' => 'sidebar-11',
+        'description' => __( 'Widgets no header do site', 'twentyeleven' ),
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget' => "</aside>",
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>',
+    ) );
 }
 add_action( 'widgets_init', 'twentyeleven_procergs_widgets_init' );
 
@@ -295,32 +305,20 @@ function gd_config_settings() {
         $obra_atualizacao_twitter = esc_attr($_POST["OBRA_ATUALIZACAO_TWITTER"]);
         update_option("gd_obra_atualizacao_twitter", $obra_atualizacao_twitter);
 
-        $seminario_json_url = esc_attr($_POST["SEMINARIO_JSON_URL"]);
-        update_option("gd_seminario_json_url", $seminario_json_url);
+        $colaborativa_categoria_id = esc_attr($_POST["COLABORATIVA_CATEGORIA_ID"]);
+        update_option("gd_colaborativa_categoria_id", $colaborativa_categoria_id);
 
-        $seminario_categoria_id = esc_attr($_POST["SEMINARIO_CATEGORIA_ID"]);
-        update_option("gd_seminario_categoria_id", $seminario_categoria_id);
+        $colaborativa_twitter_tag = esc_attr($_POST["COLABORATIVA_TWITTER_TAG"]);
+        update_option("gd_colaborativa_twitter_tag", $colaborativa_twitter_tag);
 
-        $seminario_twitter_tag = esc_attr($_POST["SEMINARIO_TWITTER_TAG"]);
-        update_option("gd_seminario_twitter_tag", $seminario_twitter_tag);
+        $colaborativa_flickr_tag = esc_attr($_POST["COLABORATIVA_FLICKR_TAG"]);
+        update_option("gd_colaborativa_flickr_tag", $colaborativa_flickr_tag);
 
-        $seminario_flickr_tag = esc_attr($_POST["SEMINARIO_FLICKR_TAG"]);
-        update_option("gd_seminario_flickr_tag", $seminario_flickr_tag);
+        $colaborativa_instagram_tag = esc_attr($_POST["COLABORATIVA_INSTAGRAM_TAG"]);
+        update_option("gd_colaborativa_instagram_tag", $colaborativa_instagram_tag);
 
-        $seminario_instagram_tag = esc_attr($_POST["SEMINARIO_INSTAGRAM_TAG"]);
-        update_option("gd_seminario_instagram_tag", $seminario_instagram_tag);
-
-        $seminario_subject = esc_attr($_POST["SEMINARIO_SUBJECT"]);
-        update_option("gd_seminario_subject", $seminario_subject);
-
-        $seminario_moderadores = esc_attr($_POST["SEMINARIO_MODERADORES"]);
-        update_option("gd_seminario_moderadores", $seminario_moderadores);
-
-        $seminario_msg = esc_attr($_POST["SEMINARIO_MSG"]);
-        update_option("gd_seminario_msg", $seminario_msg);
-
-        $seminario_aovivo = htmlentities(stripslashes($_POST["SEMINARIO_AOVIVO"]));
-        update_option("gd_seminario_aovivo", $seminario_aovivo);
+        $colaborativa_moderadores = esc_attr($_POST["COLABORATIVA_MODERADORES"]);
+        update_option("gd_colaborativa_moderadores", $colaborativa_moderadores);
 
         $flickr_app_key = esc_attr($_POST["FLICKR_APP_KEY"]);
         update_option("gd_flickr_app_key", $flickr_app_key);
@@ -387,15 +385,11 @@ function gd_config_settings() {
         $obra_atualizacao_msg = html_entity_decode(get_option("gd_obra_atualizacao_msg"));
         $obra_atualizacao_twitter = html_entity_decode(get_option("gd_obra_atualizacao_twitter"));
 
-        $seminario_json_url = get_option("gd_seminario_json_url");
-        $seminario_categoria_id = get_option("gd_seminario_categoria_id");
-        $seminario_twitter_tag = get_option("gd_seminario_twitter_tag");
-        $seminario_flickr_tag = get_option("gd_seminario_flickr_tag");
-        $seminario_instagram_tag = get_option("gd_seminario_instagram_tag");
-        $seminario_subject = get_option("gd_seminario_subject");
-        $seminario_moderadores = get_option("gd_seminario_moderadores");
-        $seminario_msg = get_option("gd_seminario_msg");
-        $seminario_aovivo = html_entity_decode(get_option("gd_seminario_aovivo"));
+        $colaborativa_categoria_id = get_option("gd_colaborativa_categoria_id");
+        $colaborativa_twitter_tag = get_option("gd_colaborativa_twitter_tag");
+        $colaborativa_flickr_tag = get_option("gd_colaborativa_flickr_tag");
+        $colaborativa_instagram_tag = get_option("gd_colaborativa_instagram_tag");
+        $colaborativa_moderadores = get_option("gd_colaborativa_moderadores");
 
         $flickr_app_key = get_option("gd_flickr_app_key");
         $flickr_app_secret = get_option("gd_flickr_app_secret");
@@ -823,82 +817,54 @@ function gd_config_settings() {
                 </tr>
 
                 <tr valign="top"><th colspan=2>
-                    <h2>HOTSITE Seminário Crise da Representação</h2>
+                    <h2>Colaborativa</h2>
                 </th></tr>
 
                 <tr valign="top">
                     <th scope="row">
-                        <label for="SEMINARIO_JSON_URL">
-                            Categoria dos posts (SEMINARIO_JSON_URL)
+                        <label for="COLABORATIVA_CATEGORIA_ID">
+                            Categoria dos posts (COLABORATIVA_CATEGORIA_ID)
                         </label>
                     </th>
-                    <td><input type="text" name="SEMINARIO_JSON_URL" value="<?php echo $seminario_json_url;?>" size="25" /></td>
+                    <td>
+                        <!-- <input type="text" name="COLABORATIVA_CATEGORIA_ID" value="<?php echo $colaborativa_categoria_id;?>" size="25" /> -->
+                        <?php wp_dropdown_categories( 'hierarchical=1&selected='.$colaborativa_categoria_id."&name=COLABORATIVA_CATEGORIA_ID&show_option_none=Não Selecionado&hide_empty=0&show_count=1" ); ?>
+
+                    </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">
-                        <label for="SEMINARIO_CATEGORIA_ID">
-                            Categoria dos posts (SEMINARIO_CATEGORIA_ID)
+                        <label for="COLABORATIVA_TWITTER_TAG">
+                            Hashtag do twitter (COLABORATIVA_TWITTER_TAG)
                         </label>
                     </th>
-                    <td><input type="text" name="SEMINARIO_CATEGORIA_ID" value="<?php echo $seminario_categoria_id;?>" size="25" /></td>
+                    <td><input type="text" name="COLABORATIVA_TWITTER_TAG" value="<?php echo $colaborativa_twitter_tag;?>" size="25" /></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">
-                        <label for="SEMINARIO_TWITTER_TAG">
-                            Hash de procura no twitter (SEMINARIO_TWITTER_TAG)
+                        <label for="COLABORATIVA_FLICKR_TAG">
+                            Hashtag do Flickr (COLABORATIVA_FLICKR_TAG)
                         </label>
                     </th>
-                    <td><input type="text" name="SEMINARIO_TWITTER_TAG" value="<?php echo $seminario_twitter_tag;?>" size="25" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">
-                        <label for="SEMINARIO_FLICKR_TAG">
-                            Tag de procura no Flickr (SEMINARIO_FLICKR_TAG)
-                        </label>
-                    </th>
-                    <td><input type="text" name="SEMINARIO_FLICKR_TAG" value="<?php echo $seminario_flickr_tag;?>" size="25" />
+                    <td><input type="text" name="COLABORATIVA_FLICKR_TAG" value="<?php echo $colaborativa_flickr_tag;?>" size="25" />
                     <p>Para separar use vírgulas. A busca é feita com TODAS as tags juntas.</p>
                     </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">
-                        <label for="SEMINARIO_INSTAGRAM_TAG">
-                            Tag de procura no Instagram (SEMINARIO_INSTAGRAM_TAG)
+                        <label for="COLABORATIVA_INSTAGRAM_TAG">
+                            Hashtag do Instagram (COLABORATIVA_INSTAGRAM_TAG)
                         </label>
                     </th>
-                    <td><input type="text" name="SEMINARIO_INSTAGRAM_TAG" value="<?php echo $seminario_instagram_tag;?>" size="25" /></td>
+                    <td><input type="text" name="COLABORATIVA_INSTAGRAM_TAG" value="<?php echo $colaborativa_instagram_tag;?>" size="25" /></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">
-                        <label for="SEMINARIO_SUBJECT">
-                            Mensagem de inscrição, subject (SEMINARIO_SUBJECT)
+                        <label for="COLABORATIVA_MODERADORES">
+                            Email de quem pode excluir postagens (COLABORATIVA_MODERADORES)
                         </label>
                     </th>
-                    <td><input type="text" name="SEMINARIO_SUBJECT" value="<?php echo $seminario_subject;?>" size="30" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">
-                        <label for="SEMINARIO_MSG">
-                            Mensagem de inscrição, corpo (SEMINARIO_MSG)
-                        </label>
-                    </th>
-                    <td><textarea rows="7" cols="55" name="SEMINARIO_MSG"><?php echo $seminario_msg;?></textarea></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">
-                        <label for="SEMINARIO_MODERADORES">
-                            Email de quem pode excluir postagens (SEMINARIO_MODERADORES)
-                        </label>
-                    </th>
-                    <td><input type="text" name="SEMINARIO_MODERADORES" value="<?php echo $seminario_moderadores;?>" size="30" /><p>Separado por virgulas</p></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">
-                        <label for="SEMINARIO_AOVIVO">
-                            Ao VIVO, embed (SEMINARIO_AOVIVO)
-                        </label>
-                    </th>
-                    <td><textarea rows="7" cols="55" name="SEMINARIO_AOVIVO"><?php echo $seminario_aovivo;?></textarea></td>
+                    <td><input type="text" name="COLABORATIVA_MODERADORES" value="<?php echo $colaborativa_moderadores;?>" size="30" /><p>Separado por virgulas</p></td>
                 </tr>
 
                 <tr valign="top"><th colspan=2>
@@ -1031,21 +997,17 @@ function gabdig_getconfiguration($args){
       'comite_msg' => get_option("gd_comite_msg"),
       'seguirobra_subject' => get_option("gd_seguirobra_subject"),
       'seguirobra_msg' => get_option("gd_seguirobra_msg"),
-      'seminario_twitter_tag' => get_option("gd_seminario_twitter_tag"),
-      'seminario_flickr_tag' => get_option("gd_seminario_flickr_tag"),
-      'seminario_instagram_tag' => get_option("gd_seminario_instagram_tag"),
-      'seminario_json_url' => get_option("gd_seminario_json_url"),
-      'seminario_categoria_id' => get_option("gd_seminario_categoria_id"),
+      'colaborativa_twitter_tag' => get_option("gd_colaborativa_twitter_tag"),
+      'colaborativa_flickr_tag' => get_option("gd_colaborativa_flickr_tag"),
+      'colaborativa_instagram_tag' => get_option("gd_colaborativa_instagram_tag"),
+      'colaborativa_categoria_id' => get_option("gd_colaborativa_categoria_id"),
       'flickr_app_key' => get_option("gd_flickr_app_key"),
       'flickr_app_secret' => get_option("gd_flickr_app_secret"),
       'instagram_app_key' => get_option("gd_instagram_app_key"),
       'instagram_app_secret' => get_option("gd_instagram_app_secret"),
       'instagram_user' => get_option("gd_instagram_user"),
       'instagram_token' => get_option("gd_instagram_token"),
-      'seminario_subject' => get_option("gd_seminario_subject"),
-      'seminario_moderadores' => get_option("gd_seminario_moderadores"),
-      'seminario_aovivo' => html_entity_decode(get_option("gd_seminario_aovivo")),
-      'seminario_msg' => get_option("gd_seminario_msg"),
+      'colaborativa_moderadores' => get_option("gd_colaborativa_moderadores"),
       'obra_atualizacao_subject' => get_option("gd_obra_atualizacao_subject"),
       'obra_atualizacao_msg' => html_entity_decode(get_option("gd_obra_atualizacao_msg")),
       'obra_atualizacao_twitter' => html_entity_decode(get_option("gd_obra_atualizacao_twitter"))
